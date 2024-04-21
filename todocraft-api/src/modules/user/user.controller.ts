@@ -48,6 +48,12 @@ export async function userLoginHandler(
       } else {
         const { password, pass_salt, ...otherUserData } = existing_user;
         const accessToken = fastify.jwt.sign(otherUserData);
+        reply.setCookie("access_token", accessToken, {
+          path: "/",
+          httpOnly: true,
+          secure: true,
+          sameSite: "none",
+        });
         reply.code(200).send({ accessToken });
       }
     }

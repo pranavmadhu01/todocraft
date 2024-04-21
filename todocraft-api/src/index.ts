@@ -1,23 +1,34 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
 import fjwt from "@fastify/jwt";
+import fcookie from "@fastify/cookie";
 import formDataPlugin from "@fastify/formbody";
 import { registerRoutes } from "./registerRoutes";
 import { envConstants } from "./constants/env.constants";
-import { jwtDecorateCallback } from "./utils/auth";
+import { cookieDecorateCallback } from "./utils/auth";
 export const fastify = Fastify({
   logger: true,
 });
 //CORS setup
 fastify.register(cors, {
   origin: envConstants.WEBSITE_DOMAIN,
+  credentials: true,
 });
 //JWT setup
+fastify.register(fjwt, {
+  secret: envConstants.JWT_SECRET,
+});
+fastify.addHook("preHandler", (req, res, next) => {
+  // here we are
+  req.jwt = fastify.jwt;
+  return next();
+});
+//Cookie setup
 fastify
-  .register(fjwt, {
-    secret: envConstants.JWT_SECRET,
+  .register(fcookie, {
+    secret: envConstants.COOKIE_SECRET,
   })
-  .decorate("authenticate", jwtDecorateCallback);
+  .decorate("authenticate", cookieDecorateCallback);
 //test route
 fastify.get("/ping", function (request, reply) {
   reply.send("pong");

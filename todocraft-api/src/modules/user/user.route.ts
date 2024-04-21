@@ -18,5 +18,6 @@ export async function userRoutes(server: FastifyInstance) {
     { schema: { body: $userRef("userLoginSchema") } },
     userLoginHandler
   );
+
   server.get("/", { preHandler: [server.authenticate] }, getUserHandler);
 }

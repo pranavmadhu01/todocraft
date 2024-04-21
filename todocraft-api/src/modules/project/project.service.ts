@@ -16,11 +16,26 @@ export async function getProjectsByUserId(user_id: string) {
     where: {
       user_id,
     },
+    orderBy: {
+      created_at: "desc",
+    },
+    include: {
+      _count: {
+        select: { todo: true },
+      },
+    },
   });
-  return projects;
+  return projects.map((project) => ({
+    id: project.id,
+    title: project.title,
+    created_at: project.created_at,
+    updated_at: project.updated_at,
+    todo_count: project?._count?.todo ?? 0,
+  }));
 }
 
 export async function getProjectById(project_id: string) {
+  let result = {};
   const project = await prisma.project.findUnique({
     where: {
       id: project_id,
@@ -29,10 +44,24 @@ export async function getProjectById(project_id: string) {
       _count: {
         select: { todo: { where: { status: true } } },
       },
-      todo: true,
+      todo: {
+        orderBy: {
+          updated_at: "desc",
+        },
+      },
     },
   });
-  return project;
+  if (project) {
+    result = {
+      id: project.id,
+      title: project.title,
+      created_at: project.created_at,
+      updated_at: project.updated_at,
+      completed_todo_count: project?._count?.todo ?? 0,
+      todos: project.todo,
+    };
+  }
+  return result;
 }
 
 export async function updateProject(

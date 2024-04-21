@@ -1,3 +1,4 @@
+import { FastifyJWT } from "@fastify/jwt";
 import crypto from "crypto";
 import { FastifyReply, FastifyRequest } from "fastify";
 
@@ -30,12 +31,17 @@ export function verifyPassword(
   return hash === verifyCandidateHash.toString("hex");
 }
 
-export async function jwtDecorateCallback(
+export async function cookieDecorateCallback(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
   try {
-    await request.jwtVerify();
+    const accessToken = request.cookies.access_token;
+    if (!accessToken) {
+      return reply.status(401).send({ message: "Authentication required" });
+    }
+    const decoded = request.jwt.verify<FastifyJWT["user"]>(accessToken);
+    request.user = decoded;
   } catch (error) {
     reply.code(500).send({ message: "Internal Server Error", error });
   }
