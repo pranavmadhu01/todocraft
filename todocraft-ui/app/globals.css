@@ -3,3 +3,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  width: 5px;
+  border-radius: var(--mantine-radius-sm);
+  background-color: var(--mantine-color-gray-6);
+}

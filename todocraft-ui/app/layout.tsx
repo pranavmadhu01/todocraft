@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { theme } from "@/theme";
+import { poppins } from "@/utils/font";
+import { Notifications } from "@mantine/notifications";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
-import "./globals.css";
-import "@mantine/core/styles.css";
+
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
-const inter = Inter({ subsets: ["latin"] });
+import "./globals.css";
+import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
 
 export const metadata: Metadata = {
   title: "Todo Craft",
@@ -23,9 +26,12 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript defaultColorScheme="light" />
       </head>
-      <body className={inter.className}>
+      <body className={poppins.className}>
         <ReactQueryProvider>
-          <MantineProvider>{children}</MantineProvider>
+          <MantineProvider theme={theme}>
+            <Notifications />
+            {children}
+          </MantineProvider>
         </ReactQueryProvider>
       </body>
     </html>

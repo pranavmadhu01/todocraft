@@ -1,0 +1,7 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mantine-spacing-lg);
+  flex: 1;
+  overflow-y: auto;
+}

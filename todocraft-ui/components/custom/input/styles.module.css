@@ -1,0 +1,7 @@
+.label {
+  font-size: var(--mantine-font-size-xs);
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-gray-6));
+}
+.input {
+  border-radius: var(--mantine-radius-md);
+}

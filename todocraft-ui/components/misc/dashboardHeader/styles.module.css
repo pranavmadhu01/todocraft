@@ -1,0 +1,13 @@
+.header {
+  padding-top: var(--mantine-spacing-xs);
+  padding-bottom: var(--mantine-spacing-xs);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+}
+.header_title {
+  font-size: var(--mantine-font-size-xl);
+  font-weight: 600;
+}

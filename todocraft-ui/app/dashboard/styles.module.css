@@ -1,0 +1,15 @@
+.layout_wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  padding: var(--mantine-spacing-sm);
+  gap: var(--mantine-spacing-lg);
+
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mantine-spacing-lg);
+  flex: 1;
+  overflow-y: auto;
+}
