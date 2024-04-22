@@ -4,7 +4,7 @@ import { buildJsonSchemas } from "fastify-zod";
 
 const createTodoBodySchema = z.object({
   title: z.string().min(1).max(255),
-  description: z.string().min(1).max(255).optional(),
+  description: z.string().min(0).max(255).optional(),
 });
 
 const updateTodoBodySchema = z.object({

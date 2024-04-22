@@ -46,7 +46,7 @@ export async function getProjectById(project_id: string) {
       },
       todo: {
         orderBy: {
-          updated_at: "desc",
+          created_at: "desc",
         },
       },
     },

@@ -69,3 +69,11 @@ export async function getUserHandler(
   const user = request.user;
   reply.code(200).send(user);
 }
+
+export async function logoutHandler(
+  request: FastifyRequest,
+  reply: FastifyReply
+) {
+  reply.clearCookie("access_token");
+  reply.code(200).send({ message: "Logged out" });
+}

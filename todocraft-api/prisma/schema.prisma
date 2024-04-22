@@ -29,7 +29,7 @@ model Project {
   updated_at DateTime @updatedAt
   title      String
   user_id    String   @db.Uuid
-  user       User     @relation(fields: [user_id], references: [id])
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
   todo       Todo[]
 }
 
@@ -41,5 +41,5 @@ model Todo {
   description String?
   status      Boolean  @default(false)
   project_id  String   @db.Uuid
-  project     Project  @relation(fields: [project_id], references: [id])
+  project     Project  @relation(fields: [project_id], references: [id], onDelete: Cascade)
 }
