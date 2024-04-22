@@ -9,6 +9,8 @@ import { getRelativeTimeFromTimeStamp } from "@/utils/dateTime";
 import Link from "next/link";
 import { useDeleteProject } from "@/backend/project/project.query";
 import ProjectModal from "@/components/custom/modal/projectModal";
+import ExportModal from "@/components/custom/modal/exportModal";
+
 export default function ProjectCard(props: Project) {
   const deleteProject = useDeleteProject();
   function handleDeleteProject() {
@@ -42,6 +44,7 @@ export default function ProjectCard(props: Project) {
             <IconChevronRight size={15} />
           </ActionIcon>
         </Link>
+        <ExportModal project_id={props?.id} compactButton />
         <ProjectModal type="edit" project={props} />
         <ActionIcon onClick={handleDeleteProject} color="red" variant="subtle">
           <IconTrash size={15} />

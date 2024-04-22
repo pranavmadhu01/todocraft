@@ -21,7 +21,7 @@ import TodoModal from "@/components/custom/modal/todoModal";
 export default function ProjectIdPage() {
   const [compactView, setCompactView] = useState(true);
   const { project_id } = useParams() as { project_id: string };
-  const { data, isLoading, error } = useGetProjectById(project_id);
+  const { data, isLoading, error } = useGetProjectById(project_id, true);
 
   return (
     <div className={classes.wrapper}>

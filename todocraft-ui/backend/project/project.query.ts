@@ -42,10 +42,11 @@ export const useGetProjects = () => {
   });
 };
 
-export const useGetProjectById = (project_id: string) => {
+export const useGetProjectById = (project_id: string, opened: boolean) => {
   return useQuery({
     queryKey: ["project", project_id],
     queryFn: () => getProjectById(project_id),
+    enabled: opened,
   });
 };
 

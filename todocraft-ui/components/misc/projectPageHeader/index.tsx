@@ -1,4 +1,5 @@
 import CustomButton from "@/components/custom/button";
+import ExportModal from "@/components/custom/modal/exportModal";
 import { ActionIcon, Group, Title } from "@mantine/core";
 import { IconChevronLeft, IconDownload, IconTrash } from "@tabler/icons-react";
 import Link from "next/link";
@@ -15,15 +16,7 @@ export default function ProjectPageHeader(props: ProjectWithTodo) {
         <Title order={2}>{props?.title}</Title>
       </Group>
       <Group>
-        <CustomButton
-          leftSection={<IconDownload size={18} />}
-          disabled={!props}
-          fz={"sm"}
-          variant="light"
-          size="xs"
-        >
-          Export
-        </CustomButton>
+        <ExportModal {...props} />
         <CustomButton
           leftSection={<IconTrash size={18} />}
           color="red"

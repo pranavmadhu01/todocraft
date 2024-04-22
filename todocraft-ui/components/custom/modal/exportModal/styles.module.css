@@ -1,0 +1,5 @@
+.markdown_wrapper {
+  padding: var(--mantine-spacing-md);
+  border: 1px solid var(--mantine-color-gray-8);
+  border-radius: var(--mantine-radius-md);
+}

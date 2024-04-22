@@ -34,7 +34,7 @@ export default function TodoForm(props: Props) {
             {...props?.form.getInputProps("status")}
           />
         )}
-        <CustomButton fullWidth type="submit" disabled={!props?.form?.isDirty()}>
+        <CustomButton fullWidth type="submit">
           Submit
         </CustomButton>
       </Stack>
