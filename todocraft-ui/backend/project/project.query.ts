@@ -50,7 +50,10 @@ export const useGetProjectById = (project_id: string, opened: boolean) => {
   });
 };
 
-export const useUpdateProject = (project_id: string) => {
+export const useUpdateProject = (
+  project_id: string,
+  noNotification?: boolean
+) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (data: CreateProjectBody) => updateProject(project_id, data),
@@ -61,20 +64,22 @@ export const useUpdateProject = (project_id: string) => {
       queryClient.invalidateQueries({
         queryKey: ["project", project_id],
       });
-      _showNotification(
-        "project-update",
-        "success",
-        "Project updated successfully",
-        "green"
-      );
+      !noNotification &&
+        _showNotification(
+          "project-update",
+          "success",
+          "Project updated successfully",
+          "green"
+        );
     },
     onError: (error) => {
-      _showNotification(
-        "project-update",
-        "error",
-        "Error Updating Project",
-        "red"
-      );
+      !noNotification &&
+        _showNotification(
+          "project-update",
+          "error",
+          "Error Updating Project",
+          "red"
+        );
     },
   });
 };

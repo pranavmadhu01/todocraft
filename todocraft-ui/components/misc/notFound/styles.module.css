@@ -1,0 +1,13 @@
+.flex {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: var(--mantine-spacing-lg);
+}
+.text {
+  font-size: var(--mantine-font-size-sm);
+  color: var(--mantine-color-gray-6);
+  font-weight: 500;
+}

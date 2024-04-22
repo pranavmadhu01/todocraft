@@ -1,5 +1,5 @@
 import { axiosInstance } from "@/backend";
-import { CreateTodoBody } from "./todo.schema";
+import { CreateTodoBody, UpdateTodoBody } from "./todo.schema";
 import { PROJECT_BASE_PATH } from "../project.api";
 
 export async function createTodo(project_id: string, data: CreateTodoBody) {
@@ -25,7 +25,7 @@ export async function getTodoById(project_id: string, todo_id: string) {
 export async function updateTodo(
   project_id: string,
   todo_id: string,
-  data: CreateTodoBody
+  data: UpdateTodoBody
 ) {
   return await axiosInstance.patch(
     `${PROJECT_BASE_PATH}/${project_id}/todo/${todo_id}`,

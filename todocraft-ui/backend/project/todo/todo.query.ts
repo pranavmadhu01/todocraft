@@ -6,7 +6,7 @@ import {
   getTodos,
   updateTodo,
 } from "./todo.api";
-import { CreateTodoBody } from "./todo.schema";
+import { CreateTodoBody, UpdateTodoBody } from "./todo.schema";
 import { _showNotification } from "@/utils/notifications";
 
 export const useCreateTodo = (project_id: string) => {
@@ -48,7 +48,7 @@ export const useGetTodoById = (project_id: string, todo_id: string) => {
 export const useUpdateTodo = (project_id: string, todo_id: string) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: CreateTodoBody) => updateTodo(project_id, todo_id, data),
+    mutationFn: (data: UpdateTodoBody) => updateTodo(project_id, todo_id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["todos", project_id] });
       queryClient.invalidateQueries({

@@ -18,6 +18,7 @@ import TodoCard from "@/components/cards/todoCard";
 import ProjectPageHeader from "@/components/misc/projectPageHeader";
 import { useState } from "react";
 import TodoModal from "@/components/custom/modal/todoModal";
+import Notfound from "@/components/misc/notFound";
 export default function ProjectIdPage() {
   const [compactView, setCompactView] = useState(true);
   const { project_id } = useParams() as { project_id: string };
@@ -57,16 +58,23 @@ export default function ProjectIdPage() {
               </Group>
               <TodoModal type="create" project_id={project_id} />
             </Group>
-            <Stack mt={"lg"}>
-              {data?.todos?.map((todo) => (
-                <TodoCard
-                  key={todo.id}
-                  {...todo}
-                  compactView={compactView}
-                  project_id={data?.id}
-                />
-              ))}
-            </Stack>
+            {data?.todos?.length > 0 ? (
+              <Stack mt={"lg"}>
+                {data?.todos?.map((todo) => (
+                  <TodoCard
+                    key={todo.id}
+                    {...todo}
+                    compactView={compactView}
+                    project_id={data?.id}
+                  />
+                ))}
+              </Stack>
+            ) : (
+              <Notfound
+                label="No Todos Found"
+                Icon={<IconListCheck size={40} />}
+              />
+            )}
           </Stack>
         )}
       </Container>

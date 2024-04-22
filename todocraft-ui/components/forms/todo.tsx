@@ -21,8 +21,6 @@ export default function TodoForm(props: Props) {
           {...props?.form?.getInputProps("title")}
         />
         <CustomTextInput
-          required
-          withAsterisk
           label="Description"
           placeholder="Enter the description"
           {...props?.form?.getInputProps("description")}

@@ -1,0 +1,8 @@
+.text_input {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-weight: var(--title-fw);
+  font-size: 20px;
+  max-width: fit-content;
+}

@@ -13,3 +13,7 @@ export async function loginUser(data: UserLoginBody) {
 export async function getUser() {
   return (await axiosInstance.get(USER_BASE_PATH)).data as User;
 }
+
+export async function logoutUser() {
+  return await axiosInstance.post(`${USER_BASE_PATH}/logout`);
+}

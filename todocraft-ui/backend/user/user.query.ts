@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { CreateUserBody, UserLoginBody } from "./user.schema";
-import { createUser, getUser, loginUser } from "./user.api";
+import { createUser, getUser, loginUser, logoutUser } from "./user.api";
 import { _showNotification } from "@/utils/notifications";
 
 export const useCreateUser = () => {
@@ -51,5 +51,27 @@ export const useGetUser = () => {
   return useQuery({
     queryKey: ["user"],
     queryFn: getUser,
+  });
+};
+
+export const useLogoutUser = () => {
+  return useMutation({
+    mutationFn: (data: any) => logoutUser(),
+    onSuccess: () => {
+      _showNotification(
+        "user-logout",
+        "success",
+        "user logged out successfully",
+        "green"
+      );
+    },
+    onError: (error: any) => {
+      _showNotification(
+        "user-logout",
+        "error",
+        error.response.data.message,
+        "red"
+      );
+    },
   });
 };

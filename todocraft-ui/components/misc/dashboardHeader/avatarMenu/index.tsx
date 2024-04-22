@@ -14,14 +14,17 @@ import {
 } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import classes from "./styles.module.css";
-import { useGetUser } from "@/backend/user/user.query";
+import { useGetUser, useLogoutUser } from "@/backend/user/user.query";
 import { IconChevronDown, IconLogout } from "@tabler/icons-react";
 import { ColorSchemeToggle } from "../../colorSchemeToggle";
 
 export default function AvatarMenu() {
   const { data, isLoading, error } = useGetUser();
   const router = useRouter();
-  async function logout() {}
+  const userLogout = useLogoutUser();
+  function logout() {
+    userLogout.mutate(null, { onSuccess: () => router.replace("/auth/login") });
+  }
   if (isLoading) return <Loader size={"sm"} />;
   return (
     <Menu withArrow position="bottom-end">
@@ -58,8 +61,9 @@ export default function AvatarMenu() {
               <IconLogout />
             </ThemeIcon>
           }
+          onClick={logout}
         >
-          <Text size="xs" fw={500} onClick={logout}>
+          <Text size="xs" fw={500}>
             Logout
           </Text>
         </Menu.Item>

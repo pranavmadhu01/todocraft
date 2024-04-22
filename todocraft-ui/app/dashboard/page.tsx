@@ -12,6 +12,7 @@ import {
 } from "@mantine/core";
 import { useGetProjects } from "@/backend/project/project.query";
 import ProjectCard from "@/components/cards/projectCard";
+import Notfound from "@/components/misc/notFound";
 export default function DashboardPage() {
   const { data, isLoading, error } = useGetProjects();
   return (
@@ -23,13 +24,17 @@ export default function DashboardPage() {
           </Box>
           {isLoading && <Loader size={"sm"} />}
           {error && <Text c={"red"}>Error fetching data</Text>}
-          <Grid columns={6}>
-            {data?.map((project) => (
-              <GridCol span={2}>
-                <ProjectCard {...project} />
-              </GridCol>
-            ))}
-          </Grid>
+          {data && data.length > 0 ? (
+            <Grid columns={6}>
+              {data?.map((project) => (
+                <GridCol span={2}>
+                  <ProjectCard {...project} />
+                </GridCol>
+              ))}
+            </Grid>
+          ) : (
+            <Notfound label="No Projects Found" />
+          )}
         </Stack>
       </Container>
     </div>

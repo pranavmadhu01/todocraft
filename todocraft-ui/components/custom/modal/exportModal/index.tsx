@@ -1,3 +1,5 @@
+"use client";
+
 import { exportMarkdown, generateProjectMarkDown } from "@/utils/md";
 import { useDisclosure } from "@mantine/hooks";
 import { CustomModalLayout } from "..";

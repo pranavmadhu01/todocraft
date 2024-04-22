@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useDeleteProject } from "@/backend/project/project.query";
 import ProjectModal from "@/components/custom/modal/projectModal";
 import ExportModal from "@/components/custom/modal/exportModal";
+import ConfirmationModal from "@/components/custom/modal/confirmationModal";
 
 export default function ProjectCard(props: Project) {
   const deleteProject = useDeleteProject();
@@ -46,9 +47,13 @@ export default function ProjectCard(props: Project) {
         </Link>
         <ExportModal project_id={props?.id} compactButton />
         <ProjectModal type="edit" project={props} />
-        <ActionIcon onClick={handleDeleteProject} color="red" variant="subtle">
-          <IconTrash size={15} />
-        </ActionIcon>
+        <ConfirmationModal
+          buttonCompact
+          type="delete"
+          modalTitle="Delete Project?"
+          modalDescription="All the associated Todos with the project will also be deleted"
+          onClick={handleDeleteProject}
+        />
       </Stack>
     </Group>
   );

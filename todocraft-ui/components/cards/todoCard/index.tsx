@@ -1,5 +1,4 @@
 import {
-  ActionIcon,
   Badge,
   Card,
   Checkbox,
@@ -9,13 +8,27 @@ import {
   Text,
 } from "@mantine/core";
 import classes from "./styles.module.css";
-import { IconTrash } from "@tabler/icons-react";
 import { getRelativeTimeFromTimeStamp } from "@/utils/dateTime";
 import TodoModal from "@/components/custom/modal/todoModal";
+import ConfirmationModal from "@/components/custom/modal/confirmationModal";
+import {
+  useDeleteTodo,
+  useUpdateTodo,
+} from "@/backend/project/todo/todo.query";
 
 export default function TodoCard(
   props: Todo & { compactView: boolean; project_id: string }
 ) {
+  const deleteTodo = useDeleteTodo(props?.project_id, props?.id);
+  const updateTodo = useUpdateTodo(props?.project_id, props?.id);
+
+  function handleDeleteTodo() {
+    deleteTodo.mutate();
+  }
+
+  function updateTodoStatus() {
+    updateTodo.mutate({ status: !props?.status });
+  }
   return (
     <Group align="start" gap={2}>
       <Card className={classes.wrapper} withBorder>
@@ -34,6 +47,7 @@ export default function TodoCard(
             }
             labelPosition="left"
             size="xs"
+            onChange={updateTodoStatus}
           />
         </Group>
         {!props.compactView && (
@@ -60,9 +74,13 @@ export default function TodoCard(
       </Card>
       <Stack gap={5}>
         <TodoModal type="edit" todo={props} project_id={props?.project_id} />
-        <ActionIcon color="red" variant="subtle">
-          <IconTrash size={15} />
-        </ActionIcon>
+        <ConfirmationModal
+          buttonCompact
+          type="delete"
+          modalTitle="Delete Todo?"
+          modalDescription="Todo will be deleted permanently."
+          onClick={handleDeleteTodo}
+        />
       </Stack>
     </Group>
   );
