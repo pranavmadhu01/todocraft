@@ -33,7 +33,14 @@ export default function TodoCard(
     <Group align="start" gap={2}>
       <Card className={classes.wrapper} withBorder>
         <Group className={classes.header}>
-          <Text className={classes.title}>{props?.title}</Text>
+          <Group>
+            <Text className={classes.title}>{props?.title}</Text>
+            {props?.compactView && (
+              <Text size="xs" c={"dimmed"}>
+                {getRelativeTimeFromTimeStamp(props?.created_at)}
+              </Text>
+            )}
+          </Group>
           <Checkbox
             checked={props?.status}
             label={

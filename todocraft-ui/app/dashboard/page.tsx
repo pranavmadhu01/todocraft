@@ -27,7 +27,7 @@ export default function DashboardPage() {
           {data && data.length > 0 ? (
             <Grid columns={6}>
               {data?.map((project) => (
-                <GridCol span={2}>
+                <GridCol span={{ base: 6, sm: 3, lg: 2 }} key={project?.id}>
                   <ProjectCard {...project} />
                 </GridCol>
               ))}

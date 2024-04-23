@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: mydb
+      POSTGRES_PASSWORD: testpass123
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5434:5432"
+    restart: unless-stopped
+
+  frontend:
+    image: pranavmadhu01/todocraft-ui
+    build: ./todocraft-ui
+    ports:
+      - 3000:3000
+
+  backend:
+    image: pranavmadhu01/todocraft-api
+    build: ./todocraft-api
+    ports:
+      - 3001:3001
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://postgres:testpass123@postgres:5432/mydb?schema=public
+
+volumes:
+  postgres:

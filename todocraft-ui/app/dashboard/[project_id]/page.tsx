@@ -62,7 +62,7 @@ export default function ProjectIdPage() {
               <Stack mt={"lg"}>
                 {data?.todos?.map((todo) => (
                   <TodoCard
-                    key={todo.id}
+                    key={todo?.id}
                     {...todo}
                     compactView={compactView}
                     project_id={data?.id}

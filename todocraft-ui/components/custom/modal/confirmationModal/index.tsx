@@ -23,7 +23,6 @@ export default function ConfirmationModal(props: Props) {
           onClose,
           title: props.modalTitle,
           subtitle: props.modalDescription,
-          size: "lg",
         }}
       >
         <CustomButton

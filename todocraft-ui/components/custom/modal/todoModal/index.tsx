@@ -37,6 +37,7 @@ export default function TodoModal(props: Props) {
   function handleCreateTodo(values: typeof form.values) {
     createTodo.mutate(values, {
       onSuccess: () => {
+        form.reset();
         onClose();
       },
     });
@@ -48,6 +49,19 @@ export default function TodoModal(props: Props) {
       },
     });
   }
+  const updateTodo = useUpdateTodo(
+    props?.project_id,
+    props?.todo?.id as string
+  );
+  useEffect(() => {
+    if (props?.todo) {
+      form.initialize({
+        title: props?.todo?.title,
+        description: props?.todo?.description,
+        status: props?.todo?.status,
+      });
+    }
+  }, [props?.todo]);
   switch (props.type) {
     case "create": {
       return (
@@ -76,19 +90,6 @@ export default function TodoModal(props: Props) {
       );
     }
     case "edit": {
-      const updateTodo = useUpdateTodo(
-        props?.project_id,
-        props?.todo?.id as string
-      );
-      useEffect(() => {
-        if (props?.todo) {
-          form.initialize({
-            title: props?.todo?.title,
-            description: props?.todo?.description,
-            status: props?.todo?.status,
-          });
-        }
-      }, [props?.todo]);
       return (
         <>
           <CustomModalLayout

@@ -34,6 +34,7 @@ export default function ProjectModal(props: Props) {
   function handleCreateProject(values: typeof form.values) {
     createProject.mutate(values, {
       onSuccess: () => {
+        form.reset();
         onClose();
       },
     });
@@ -46,6 +47,12 @@ export default function ProjectModal(props: Props) {
       },
     });
   }
+  const updateProject = useUpdateProject(props?.project?.id as string);
+  useEffect(() => {
+    if (props?.project) {
+      form.initialize({ title: props?.project?.title });
+    }
+  }, [props?.project]);
   switch (props.type) {
     case "create": {
       return (
@@ -74,12 +81,6 @@ export default function ProjectModal(props: Props) {
       );
     }
     case "edit": {
-      const updateProject = useUpdateProject(props?.project?.id as string);
-      useEffect(() => {
-        if (props?.project) {
-          form.initialize({ title: props?.project?.title });
-        }
-      }, [props?.project]);
       return (
         <>
           <CustomModalLayout
