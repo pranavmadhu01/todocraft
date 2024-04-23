@@ -41,12 +41,12 @@ Before you begin, ensure you have met the following requirements:
 3. Run the container: 
 
    ```sh
-   docker-compose up
+   docker-compose up --build
 
    ```
    or
    ```sh
-   docker compose up
+   docker compose up --build
 
    ```
    *If you're running the container on Linux or Ubuntu and encounter permission issues, you may need to run the command with `sudo`*
