@@ -22,8 +22,9 @@ export default function HomePage() {
           </Highlight>
           <Text className={classes.title}></Text>
           <Text className={classes.description}>
-            A simple todo management app which has the ability to create
-            projects and associate todos with them.
+            A robust todo management app that allows you to create projects,
+            associate todos with them, and even export your todos as a markdown
+            file for easy sharing and reference.
           </Text>
           <Group>
             <Link href={"/auth/signup"}>

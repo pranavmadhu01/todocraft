@@ -13,4 +13,5 @@
 }
 .description {
   font-size: var(--mantine-font-size-xl);
+  text-align: center;
 }
