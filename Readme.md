@@ -1,4 +1,5 @@
 # TodoCraft
+![image](https://github.com/pranavmadhu01/todocraft/assets/84242267/f06f50fa-2bd0-4075-a195-c20d8ee78b42)
 
 TodoCraft is a powerful and intuitive Todo application designed to help you manage your tasks and projects efficiently. With TodoCraft, you can not only create individual todos, but also group them into projects for better organization and tracking.
 
@@ -59,22 +60,36 @@ Before you begin, ensure you have met the following requirements:
 ## Project Walkthrough
 
 Once you have the application running, you can follow these steps to use its features:
+![image](https://github.com/pranavmadhu01/todocraft/assets/84242267/ebee76db-9569-47bf-8aac-df1fc63b2961)
 
 1. **Sign Up:**
 
    If you're a new user, you'll need to create an account. Click on the "Get Started" button on the home page, fill in your details, and submit the form.
+   ![image](https://github.com/pranavmadhu01/todocraft/assets/84242267/8d89ae1b-a5fa-4595-abba-f855e81d7d13)
+   
+3. **Sign In:**
 
-3. **Create a Project:**
+   Login with your created account to view your dashboard
+   ![image](https://github.com/pranavmadhu01/todocraft/assets/84242267/28e84682-48b5-4194-bd03-c7f385e2a432)
+   
+5. **Create a Project:**
 
    After logging in, you'll be taken to your dashboard. Click on the "Add Project" button, enter a name for your project, and click "Submit".
+   ![image](https://github.com/pranavmadhu01/todocraft/assets/84242267/c9fa4597-b21d-418d-9a69-eca1c342ee70)
 
-4. **Add Todos to the Project:**
+
+7. **Add Todos to the Project:**
 
    Once you've created a project, you can start adding todos. Click on your project to open it, then click on the "Add Todo" button. Fill in the details of your todo (like its title and description), and click "Submit".
+   ![image](https://github.com/pranavmadhu01/todocraft/assets/84242267/c01e4fcd-caec-45e6-b0d9-815d492df3fc)
 
-5. **Export Project:**
+9. **Export Project:**
 
    If you want to export your project as a markdown file, go to your project page and click on the "Export" button. This will preview the markdown with all your todos which you can download as a file.
+   ![image](https://github.com/pranavmadhu01/todocraft/assets/84242267/350ddb94-69d3-441a-8c9e-40140fc96b13)
+   ![image](https://github.com/pranavmadhu01/todocraft/assets/84242267/bb1bb475-5aad-45d4-8f63-5983ff0aa7d3)
+
+
 
 Remember, you can create multiple projects and add as many todos as you want to each project. Enjoy using TodoCraft!
 
